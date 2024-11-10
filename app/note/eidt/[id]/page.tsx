@@ -1,5 +1,7 @@
+import { EidtOrNewNote } from "@/app/components/eidtOrNewNote";
+
 export default function EidtPage({ params }: { params: {id: string}}) {
-    return <div>
-        {`Eidt Note ${params.id}`}
-    </div>
+    return <>
+        <EidtOrNewNote flag="eidt" noteUuid={params.id} />
+    </>
 }
