@@ -23,7 +23,9 @@ export default function NewNotePage() {
           className="p-2 h-[80vh] overflow-auto min-w-[50vh] bg-white border shadow-sm border-slate-100 placeholder-slate-300 focus:outline-none focus:border-black focus:ring-black block rounded-md sm:text-sm focus:ring-1"
           placeholder="Please Input The Content Of The Note ..."
         ></textarea>
-        <div className="max-h-[80vh] p-2 overflow-auto shadow-xl border-slate-100 flex-1 ml-20"></div>
+        <div className="max-h-[80vh] p-2 overflow-auto shadow-xl border-slate-100 flex-1 ml-20">
+            <div className="text-white rounded-xl px-3 py-2 bg-[#a5f3fc] text-sm w-fit font-bold">Preview</div>
+        </div>
       </section>
     </>
   );
