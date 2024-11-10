@@ -75,6 +75,18 @@ export async function updateNote(uuid: string, data: Note) {
  * @returns 
  */
 export async function getNote(uuid: string) {
+    await connectDb();  // 确保数据库连接
+
+    try {
+        const note = await NoteModel.findById(uuid);  // 根据 uuid 查找笔记
+        if (!note) {
+            throw new Error("Note not found");
+        }
+        return note;  // 返回找到的笔记
+    } catch (err) {
+        console.error("Failed to fetch note", err);
+        throw new Error("Failed to fetch note");
+    }
 }
 
 /**
@@ -83,4 +95,16 @@ export async function getNote(uuid: string) {
  * @returns 
  */
 export async function delNote(uuid: string) {
+    await connectDb();  // 确保数据库连接
+
+    try {
+        const deletedNote = await NoteModel.findByIdAndDelete(uuid);  // 根据 uuid 删除笔记
+        if (!deletedNote) {
+            throw new Error("Note not found");
+        }
+        return deletedNote;  // 返回删除的笔记
+    } catch (err) {
+        console.error("Failed to delete note", err);
+        throw new Error("Failed to delete note");
+    }
 }
