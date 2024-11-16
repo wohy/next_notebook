@@ -7,7 +7,7 @@ npm run dev
 brew install redis
 启动 redis-server
 
-安装 redis 可视化操作平台
+安装 redis GUI 工具
 https://getmedis.com/
 brew install medis
 安装完成，链接 redis-server 端口
