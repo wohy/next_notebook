@@ -9,4 +9,4 @@ declare global {
   
 }
 
-export {}
+declare module 'sanitize-html'

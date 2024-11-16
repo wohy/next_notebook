@@ -1,69 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import { NoteCard } from "./noteCard";
+import { getAllNotes } from "@/lib/redis";
 
-const list = [
-  {
-    title: "Newest Note Title",
-    tag: ["tailwind", "next", "app"],
-    createdAt: "2025/11/10 16:49",
-    updatedAt: "2025/11/10 16:49",
-    uuid: "1",
-  },
-  {
-    title: "Newest Note Title",
-    tag: ["tailwind", "next", "app"],
-    createdAt: "2025/11/10 16:49",
-    updatedAt: "2025/11/10 16:49",
-    uuid: "2",
-  },
-  {
-    title: "Newest Note Title",
-    tag: ["tailwind", "next", "app"],
-    createdAt: "2025/11/10 16:49",
-    updatedAt: "2025/11/10 16:49",
-    uuid: "3",
-  },
+// const list = [
+//   {
+//     title: "Newest Note Title",
+//     tag: ["tailwind", "next", "app"],
+//     createdAt: "2025/11/10 16:49",
+//     updatedAt: "2025/11/10 16:49",
+//     uuid: "1",
+//   },
+// ];
 
-  {
-    title: "Newest Note Title",
-    tag: ["tailwind", "next", "app"],
-    createdAt: "2025/11/10 16:49",
-    updatedAt: "2025/11/10 16:49",
-    uuid: "4",
-  },
-
-  {
-    title: "Newest Note Title",
-    tag: ["tailwind", "next", "app"],
-    createdAt: "2025/11/10 16:49",
-    updatedAt: "2025/11/10 16:49",
-    uuid: "5",
-  },
-  {
-    title: "Newest Note Title",
-    tag: ["tailwind", "next", "app"],
-    createdAt: "2025/11/10 16:49",
-    updatedAt: "2025/11/10 16:49",
-    uuid: "6",
-  },
-  {
-    title: "Newest Note Title",
-    tag: ["tailwind", "next", "app"],
-    createdAt: "2025/11/10 16:49",
-    updatedAt: "2025/11/10 16:49",
-    uuid: "7",
-  },
-  {
-    title: "Newest Note Title",
-    tag: ["tailwind", "next", "app"],
-    createdAt: "2025/11/10 16:49",
-    updatedAt: "2025/11/10 16:49",
-    uuid: "8",
-  },
-];
-
-export const SideBar = () => {
+export const SideBar = async () => {
+  const notes = await getAllNotes()
   return (
     <section className="bg-white dark:bg-slate-800 h-screen py-3 w-[100%] flex flex-col">
       <section className="h-15 px-5 flex flex-row justify-between items-center">
@@ -109,9 +60,14 @@ export const SideBar = () => {
         </form>
       </section>
       <section className="flex-1 px-5 overflow-auto">
-        {list.map((item, index) => {
-          return <NoteCard note={item} key={index}></NoteCard>;
-        })}
+        {
+          Reflect.ownKeys(notes)?.length ? Reflect.ownKeys(notes).map(item => {
+            const uuid = String(item)
+            return <NoteCard note={notes[uuid]} key={uuid} uuid={uuid}></NoteCard>;
+          }) : <div className="notes-empty">
+          {'No notes created yet!'}
+        </div>
+        }
       </section>
     </section>
   );

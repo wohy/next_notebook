@@ -1,4 +1,7 @@
 "use server"
+
+// TODO: 基于 MongoDB 的 action ，后续从 redis 切换到 MongoDB 后使用
+
 import { connectDb } from '@/lib/db';
 import { NoteModel, Note } from '@/lib/model';
 
