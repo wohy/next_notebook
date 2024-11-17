@@ -1,9 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import NotePreview from "./notePreview";
-import { useFormStatus } from "react-dom";
 import { Tags } from "./tag";
 import { deleteNote, saveNote } from "../note/actionInRedis";
+import { SaveButton } from "./saveButton";
+import { DeleteButton } from "./deleteButton";
+
+const initialState = {
+  message: "",
+};
 
 export const EidtOrNewNote = (props: {
   noteUuid?: string;
@@ -12,58 +17,53 @@ export const EidtOrNewNote = (props: {
   intialTags: string[];
 }) => {
   const { noteUuid, initialTitle, intialContent, intialTags } = props;
-  const { pending } = useFormStatus()
+  const [, saveFormAction] = useActionState(saveNote, initialState);
+  const [, delFormAction] = useActionState(deleteNote, initialState);
   const [content, setContent] = useState(intialContent);
   const [title, setTitle] = useState(initialTitle);
-  const [tags, setTags] = useState(intialTags);
+  const [tags] = useState(intialTags);
   const isDraft = !noteUuid;
+
   return (
-    <>
-      <section className="flex flex-row items-center justify-between">
-        <form autoComplete="off">
-          <input
-            type="text"
-            value={title}
-            className="flex-1 bg-white h-10 p-2 min-w-[50vh] border shadow-sm border-slate-100 placeholder-slate-300 focus:outline-none focus:border-black focus:ring-black block rounded-md sm:text-sm focus:ring-1"
-            placeholder="Please Input The Title Of Note ..."
-            onChange={(e) => {
-            setTitle(e.target.value)
+    <form autoComplete="off" className="flex flex-row py-5">
+      <div className="flex flex-col">
+        <input type="hidden" name="noteId" value={noteUuid} />
+        <input
+          type="text"
+          value={title}
+          name="title"
+          className="mb-4 bg-white h-10 p-2 min-w-[50vh] border shadow-sm border-slate-100 placeholder-slate-300 focus:outline-none focus:border-black focus:ring-black block rounded-md sm:text-sm focus:ring-1"
+          placeholder="Please Input The Title Of Note ..."
+          onChange={(e) => {
+            setTitle(e.target.value);
           }}
-          />
-        </form>
-        <form role="menubar">
-          <div className="ml-10">
-            <button disabled={pending} formAction={() => saveNote(noteUuid, title, content)} className="h-10 rounded-md text-white bg-black px-2 font-semibold dark:bg-white dark:text-black">
-              {isDraft ? "Create" : "Done"}
-            </button>
-            {!isDraft && <button disabled={pending} formAction={() => deleteNote(noteUuid)} className="h-10 rounded-md text-white bg-[#ef4444] px-2 font-semibold ml-2">
-              Delete
-            </button>}
-          </div>
-        </form>
-      </section>
-      <section className="mt-8 flex flex-row">
-        <form autoComplete="off">
-          <textarea
-            value={content}
-            className="p-2 h-[80vh] overflow-auto min-w-[50vh] bg-white border shadow-sm border-slate-100 placeholder-slate-300 focus:outline-none focus:border-black focus:ring-black block rounded-md sm:text-sm focus:ring-1"
-            placeholder="Please Input The Content Of The Note ..."
-            onChange={(e) => {
-              setContent(e.target.value)
-            }}
-          ></textarea>
-        </form>
-        <div className="max-h-[80vh] p-2 overflow-auto shadow-xl border-slate-100 flex-1 ml-20">
-          <div className="text-white rounded-xl px-3 py-2 bg-[#a5f3fc] text-sm w-fit font-bold">
+        />
+        <textarea
+          value={content}
+          name="body"
+          className="p-2 h-[80vh] overflow-auto min-w-[50vh] bg-white border shadow-sm border-slate-100 placeholder-slate-300 focus:outline-none focus:border-black focus:ring-black block rounded-md sm:text-sm focus:ring-1"
+          placeholder="Please Input The Content Of The Note ..."
+          onChange={(e) => {
+            setContent(e.target.value);
+          }}
+        ></textarea>
+      </div>
+      <div className="ml-10 flex flex-col flex-1">
+        <div className="flex flex-row mb-4 ml-auto">
+          <SaveButton formAction={saveFormAction} />
+          <DeleteButton formAction={delFormAction} isDraft={isDraft} />
+        </div>
+        <div className="p-2 h-[80vh] shadow-xl border-slate-100 overflow-y-auto">
+          <div className="text-white rounded-xl px-3 py-2 bg-[#a5f3fc] text-sm w-fit font-bold mb-4">
             Preview
           </div>
           <div className="flex flex-col">
-              <div className="text-2xl font-bold">{title}</div>
-              <Tags tag={tags}></Tags>
+            <div className="text-2xl font-bold">{title}</div>
+            <Tags tag={tags}></Tags>
           </div>
           <NotePreview>{content}</NotePreview>
         </div>
-      </section>
-    </>
+      </div>
+    </form>
   );
 };

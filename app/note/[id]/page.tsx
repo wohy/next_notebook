@@ -4,13 +4,13 @@ import { getNote } from "@/lib/redis";
 import Link from "next/link";
 
 
-export default async function NoteDetail({ params }: { params: {id: string}}) {
+export default async function NoteDetail({ params }: { params: Promise<{id: string}> }) {
     const { id } = await params
     const note = await getNote(id)
     const content = note?.content || ""
     const tag = note?.tag || []
     const title = note?.title || ""
-    return <div>
+    return <div className="flex flex-col h-screen py-5">
         <section className="h-20 flex flex-row justify-between items-center">
             <div className="flex flex-col">
                 <div className="text-2xl font-bold">{title}</div>
@@ -22,6 +22,8 @@ export default async function NoteDetail({ params }: { params: {id: string}}) {
                 </button>
             </Link>
         </section>
-        <NotePreview>{content}</NotePreview>
+        <div className="flex-1 overflow-y-auto">
+            <NotePreview>{content}</NotePreview>
+        </div>
     </div>
 }

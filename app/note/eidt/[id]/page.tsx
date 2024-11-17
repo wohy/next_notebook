@@ -1,7 +1,7 @@
 import { EidtOrNewNote } from "@/app/components/eidtOrNewNote";
 import { getNote } from "@/lib/redis";
 
-export default async function EidtPage({ params }: { params: {id: string}}) {
+export default async function EidtPage({ params }: { params: Promise<{id: string}> }) {
     const { id } = await params
     const note = await getNote(id)
     const content = note?.content || ""

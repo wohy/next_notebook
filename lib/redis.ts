@@ -1,7 +1,7 @@
-import { Callback, Redis } from "ioredis";
+import { Redis } from "ioredis";
 
 // 定义笔记的接口
-interface Note {
+export interface Note {
     title: string;
     content: string;
     updatedAt: string;
@@ -75,5 +75,7 @@ export async function getNote(uuid: string): Promise<Note | null> {
 export async function delNote(uuid: string): Promise<number> {
     return redis.hdel("notes", uuid);
 }
+
+// export async function searchNoteByKeyWords(query: string, page: number = 1, pageSize: number = 10): Promise<number>
 
 export default redis

@@ -33,7 +33,7 @@ export default function RootLayout({
           <div className="min-w-[30%]">
             <SideBar />
           </div>
-          <div className="dark:bg-slate-800 bg-white py-5 px-3 flex-1">{children}</div>
+          <div className="dark:bg-slate-800 bg-white px-3 flex-1">{children}</div>
         </div>
       </body>
     </html>
