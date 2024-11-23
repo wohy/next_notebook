@@ -1,5 +1,5 @@
 "use client"
-import { ReactElement, use, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 
 interface NotesProps { content: ReactElement, title: string, key: string }
 

@@ -1,5 +1,5 @@
-import NotePreview from "@/app/components/notePreview";
-import { Tags } from "@/app/components/tag";
+import NotePreview from "../../components/notePreview";
+import { Tags } from "./../../components/tag";
 import { getNote } from "@/lib/redis";
 import Link from "next/link";
 

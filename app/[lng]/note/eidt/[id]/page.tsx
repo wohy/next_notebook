@@ -1,4 +1,4 @@
-import { EidtOrNewNote } from "@/app/components/eidtOrNewNote";
+import { EidtOrNewNote } from "../../../components/eidtOrNewNote";
 import { getNote } from "@/lib/redis";
 
 export default async function EidtPage({ params }: { params: Promise<{id: string}> }) {

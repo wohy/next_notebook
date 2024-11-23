@@ -1,18 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { NoteCard } from "./noteCard";
-import { SideBarSearch } from "./sideBarSearch";
 import NoteList from "./sideBarNoteList";
-
-// const list = [
-//   {
-//     title: "Newest Note Title",
-//     tag: ["tailwind", "next", "app"],
-//     createdAt: "2025/11/10 16:49",
-//     updatedAt: "2025/11/10 16:49",
-//     uuid: "1",
-//   },
-// ];
 
 export const SideBar = async () => {
   return (

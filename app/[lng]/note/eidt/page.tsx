@@ -1,4 +1,4 @@
-import { EidtOrNewNote } from "@/app/components/eidtOrNewNote";
+import { EidtOrNewNote } from "../../components/eidtOrNewNote";
 
 export default function NewNotePage() {
   return (
