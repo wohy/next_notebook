@@ -1,4 +1,5 @@
 "use client"
+import { useTranslations } from "next-intl";
 import { ReactElement, use, useEffect, useState } from "react";
 
 interface NotesProps { content: ReactElement, title: string, key: string }
@@ -10,6 +11,7 @@ export const SideBarSearch = ({
 }) => {
     const [keyWords, setKeyWords] = useState('')
     const [searchNotes, setSearchNotes] = useState<NotesProps[]>([])
+    const t = useTranslations("Basic");
     useEffect(() => {
       setSearchNotes(notes)
     })
@@ -34,10 +36,10 @@ export const SideBarSearch = ({
             onChange={(e) => {setKeyWords(e.target.value)}}
           />
           <button
-            className="ml-2 h-10 rounded-md text-white bg-black px-2 font-semibold dark:bg-white dark:text-black"
+            className="ml-2 w-16 h-10 rounded-md text-white bg-black px-2 font-semibold dark:bg-white dark:text-black"
             onClick={handleSearch}
           >
-            Search
+            {t('search')}
           </button>
         </div>
       </section>

@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { useFormStatus } from "react-dom";
 
 export const SaveButton = ({
@@ -6,6 +7,7 @@ export const SaveButton = ({
   formAction: (formData: FormData) => void;
 }) => {
   const { pending } = useFormStatus();
+  const t = useTranslations("Basic");
   return (
     <button
       type="submit"
@@ -14,7 +16,7 @@ export const SaveButton = ({
       formAction={formAction}
       className="h-10 rounded-md text-white bg-black px-2 font-semibold dark:bg-white dark:text-black"
     >
-      {pending ? "Saving" : "Done"}
+      {pending ? t("saving") : t("done")}
     </button>
   );
 };
