@@ -59,6 +59,11 @@ https://next-intl-docs.vercel.app/docs/getting-started/app-router/with-i18n-rout
 4. 在 getRequestConfig 中 import 的翻译映射文件路径下定义好各个语言下对应各个字段的的翻译 json 文件
 5. 组件中使用，分场景 https://next-intl-docs.vercel.app/docs/environments/server-client-components
 
+# next-auth
+验证、授权
+1. 可接入 github auth 认证 https://github.com/settings/applications/new
+新建生产一个 Client secrets
+
 
 
 # 注意

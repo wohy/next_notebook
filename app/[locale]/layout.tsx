@@ -8,6 +8,7 @@ import {
   useTranslations,
 } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { Header } from "./components/header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -42,12 +43,15 @@ export default async function RootLayout({
             Basic: messages.Basic,
           }}
         >
-          <div className="flex flex-row min-w-[1080px]">
-            <div className="min-w-[30%]">
-              <SideBar />
-            </div>
-            <div className="dark:bg-slate-800 bg-white px-3 flex-1">
-              {children}
+          <div className="min-w-[1080px] flex flex-col">
+            <Header />
+            <div className="flex flex-row flex-1 overflow-y-auto">
+              <div className="min-w-[30%]">
+                <SideBar />
+              </div>
+              <div className="dark:bg-slate-800 bg-white px-3 flex-1">
+                {children}
+              </div>
             </div>
           </div>
         </NextIntlClientProvider>

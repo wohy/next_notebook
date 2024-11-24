@@ -4,7 +4,7 @@ import NoteList from "./sideBarNoteList";
 
 export const SideBar = async () => {
   return (
-    <section className="bg-white dark:bg-slate-800 h-screen py-3 w-[100%] flex flex-col">
+    <section className="bg-white dark:bg-slate-800 h-[93vh] py-3 w-[100%] flex flex-col">
       <section className="h-15 px-5 flex flex-row justify-between items-center">
         <Link href={"/"} className="text-[#1e293b] flex flex-row">
           <Image

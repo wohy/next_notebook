@@ -12,7 +12,7 @@ export default async function NoteDetail({ params }: { params: Promise<{id: stri
     const content = note?.content || ""
     const tag = note?.tag || []
     const title = note?.title || ""
-    return <div className="flex flex-col h-screen py-5">
+    return <div className="flex flex-col h-[93vh] py-5">
         <section className="h-20 flex flex-row justify-between items-center">
             <div className="flex flex-col">
                 <div className="text-2xl font-bold">{title}</div>
