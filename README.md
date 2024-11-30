@@ -76,3 +76,16 @@ npm run build 时可以发现 '/' 、 '/note/eidt' 都会被构建为静态路�
 所以重定向时，需要注意重新验证
 
 
+# 数据库迁移至 mysql，使用 strapi 搭建一个 headless CMS，实现简易的 Restful API
+本地控制台 
+启动一个 next-react-notes-strapi 项目
+npx create-strapi-app@latest next-react-notes-strapi
+
+mysql -u root -p
+启动 mysql，并创建一个数据库
+CREATE DATABASE strapi\g
+
+
+更新 next-react-notes-strapi 项目目录中 .env 的数据库配置配置
+之后运行 npm run develop 启动 strapi 项目
+可在 strapi 项目中创建自己的 Restful API

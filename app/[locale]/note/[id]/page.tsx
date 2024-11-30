@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import NotePreview from "../../components/notePreview";
 import { Tags } from "../../components/tag";
-import { getNote } from "@/lib/redis";
+import { getNote } from "@/lib/strapi";
 import Link from "next/link";
 
 

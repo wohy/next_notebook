@@ -1,6 +1,6 @@
 "use server"
 
-import { addNote, delNote, updateNote } from "@/lib/redis";
+import { StrapiNote, addNote, delNote, updateNote } from "@/lib/strapi";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -9,19 +9,20 @@ export async function saveNote(prevState: unknown, formData: FormData): Promise<
     const noteId = formData.get('noteId') as string
 
     const data = {
-      title: formData.get('title') as string,
-      content: formData.get('body') as string,
-      updateTime: new Date(),
-      tag: []
-    }
+      title: formData.get('title'),
+      content: formData.get('body'),
+    } as StrapiNote
 
     if (noteId) {
         // 如果有 noteId，则更新笔记
+        data.updateTime = new Date().toISOString()
         await updateNote(noteId, data)
         revalidatePath('/', "layout")
         redirect(`/note/${noteId}`) // 重定向到更新后的笔记页面
     } else {
         // 如果没有 noteId，则添加新笔记
+        data.updateTime = new Date().toISOString()
+        data.createTime = new Date().toISOString()
         const res = await addNote(data)
         revalidatePath('/', "page")
         redirect(`/note/${res}`) // 重定向到新创建的笔记页面
