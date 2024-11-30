@@ -4,8 +4,6 @@ import "./globals.css";
 import { SideBar } from "./components/sideBar";
 import {
   NextIntlClientProvider,
-  useMessages,
-  useTranslations,
 } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { Header } from "./components/header";
