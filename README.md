@@ -113,8 +113,11 @@ show Tables;
 
 更改 prisma/schema.prisma 连接接 mysql 数据库， 修改 DATABASE_URL 环境变量
 数据模型 可以与 数据库 自动同步
-手动修改数据模型，然后运行 npx prisma migrate dev修改数据库，使其保持一致
-手动修改数据库，然后运行 npx prisma db pull修改数据模型，使其保持一致
+- 手动修改数据模型
+然后运行 ```npx prisma migrate dev```修改数据库，
+使其保持一致
+- 手动修改数据库
+然后运行 ```npx prisma db pull```修改数据模型，使其保持一致
 
 安装 @prisma/client 操作数据库
 ```shell
