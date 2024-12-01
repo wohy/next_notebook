@@ -2,12 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SideBar } from "./components/sideBar";
-import {
-  NextIntlClientProvider,
-  useMessages,
-  useTranslations,
-} from "next-intl";
-import { getMessages } from "next-intl/server";
 import { Header } from "./components/header";
 
 const geistSans = localFont({
@@ -31,30 +25,23 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const messages = await getMessages();
 
   return (
-    <html lang="en">
+    <html lang="zh">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextIntlClientProvider
-          messages={{
-            Basic: messages.Basic,
-          }}
-        >
-          <div className="min-w-[1080px] flex flex-col">
-            <Header />
-            <div className="flex flex-row flex-1 overflow-y-auto">
-              <div className="min-w-[30%]">
-                <SideBar />
-              </div>
-              <div className="dark:bg-slate-800 bg-white px-3 flex-1">
-                {children}
-              </div>
+        <div className="min-w-[1080px] flex flex-col">
+          <Header />
+          <div className="flex flex-row flex-1 overflow-y-auto">
+            <div className="min-w-[30%]">
+              <SideBar />
+            </div>
+            <div className="dark:bg-slate-800 bg-white px-3 flex-1">
+              {children}
             </div>
           </div>
-        </NextIntlClientProvider>
+        </div>
       </body>
     </html>
   );

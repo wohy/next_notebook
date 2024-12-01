@@ -1,4 +1,4 @@
-import { getAllNotes } from "@/lib/strapi";
+import { getAllNotes } from "@/lib/prisma";
 import { SideBarSearch } from "./sideBarSearch";
 import { NoteCard } from "./noteCard";
 
@@ -29,6 +29,6 @@ export default async function NoteList() {
           })}
         ></SideBarSearch>
       ) : (
-        <div className="notes-empty">{"No notes created yet!"}</div>
+        <div className="w-[100%] m-auto text-center">{"No notes created yet!"}</div>
       )
 }

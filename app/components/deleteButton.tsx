@@ -1,4 +1,3 @@
-import { useTranslations } from "next-intl";
 import { useFormStatus } from "react-dom";
 
 export const DeleteButton = ({
@@ -9,8 +8,6 @@ export const DeleteButton = ({
   isDraft: boolean;
 }) => {
   const { pending } = useFormStatus();
-
-  const t = useTranslations("Basic");
   return (
     !isDraft && (
         <button
@@ -19,7 +16,7 @@ export const DeleteButton = ({
           role="menuitem"
           className="h-10 rounded-md text-white bg-[#ef4444] px-2 font-semibold ml-2"
         >
-          {t("delete")}
+          {'delete'}
         </button>
     )
   );

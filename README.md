@@ -89,3 +89,38 @@ CREATE DATABASE strapi\g
 更新 next-react-notes-strapi 项目目录中 .env 的数据库配置配置
 之后运行 npm run develop 启动 strapi 项目
 可在 strapi 项目中创建自己的 Restful API
+
+# strapi 迁移至使用 prisma
+根目录安装 prisma
+```shell
+pnpm add prisma --save-dev
+```
+初始化，生产 prisma 文件，即初始化配置
+```shell
+npx prisma init
+```
+
+```shell
+# 访问数据库
+mysql -u root -p
+# 创建数据库
+CREATE DATABASE notes;
+
+use notes;
+
+show Tables;
+```
+
+更改 prisma/schema.prisma 连接接 mysql 数据库， 修改 DATABASE_URL 环境变量
+数据模型 可以与 数据库 自动同步
+手动修改数据模型，然后运行 npx prisma migrate dev修改数据库，使其保持一致
+手动修改数据库，然后运行 npx prisma db pull修改数据模型，使其保持一致
+
+安装 @prisma/client 操作数据库
+```shell
+npm install @prisma/client
+```
+可安装 prisma 的 GUI
+```shell
+npx prisma studio
+```

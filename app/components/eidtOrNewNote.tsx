@@ -2,7 +2,7 @@
 import { useActionState, useState } from "react";
 import NotePreview from "./notePreview";
 import { Tags } from "./tag";
-import { deleteNote, saveNote } from "../note/actionInRedis";
+import { deleteNote, saveNote } from "../note/actionInPrisma";
 import { SaveButton } from "./saveButton";
 import { DeleteButton } from "./deleteButton";
 

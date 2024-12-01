@@ -1,5 +1,5 @@
 import { EidtOrNewNote } from "../../../components/eidtOrNewNote";
-import { getNote } from "@/lib/strapi";
+import { getNote } from "@/lib/prisma";
 export default async function EidtPage({ params }: { params: Promise<{id: string}> }) {
     const { id } = await params
     const note = await getNote(id)

@@ -1,14 +1,12 @@
-import { getTranslations } from "next-intl/server";
 import NotePreview from "../../components/notePreview";
 import { Tags } from "../../components/tag";
-import { getNote } from "@/lib/strapi";
+import { getNote } from "@/lib/prisma";
 import Link from "next/link";
 
 
 export default async function NoteDetail({ params }: { params: Promise<{id: string}> }) {
     const { id } = await params
     const note = await getNote(id)
-    const t = await getTranslations('Basic')
     const content = note?.content || ""
     const tag = note?.tag || []
     const title = note?.title || ""
@@ -20,7 +18,7 @@ export default async function NoteDetail({ params }: { params: Promise<{id: stri
             </div>
             <Link href={`/note/eidt/${id}`}>
                 <button className="w-20 h-10 rounded-md text-white bg-black px-2 font-semibold dark:bg-white dark:text-black">
-                    {t('eidt')}
+                    {'Eidt'}
                 </button>
             </Link>
         </section>
